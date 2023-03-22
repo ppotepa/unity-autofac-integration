@@ -3,7 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityIoC", "UnityIoC\UnityIoC.csproj", "{E960820B-7924-4FD6-B881-A067DCDF16E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnityIoC", "UnityIoC\UnityIoC.csproj", "{E960820B-7924-4FD6-B881-A067DCDF16E9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{78EE2F7D-906B-45B0-9442-66BF22E865C7}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityIoC.Core", "UnityIoC.Core\UnityIoC.Core\UnityIoC.Core.csproj", "{C6D2A95A-EDE0-4856-94B1-D8405F0C5CB6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +22,10 @@ Global
 		{E960820B-7924-4FD6-B881-A067DCDF16E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E960820B-7924-4FD6-B881-A067DCDF16E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E960820B-7924-4FD6-B881-A067DCDF16E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6D2A95A-EDE0-4856-94B1-D8405F0C5CB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6D2A95A-EDE0-4856-94B1-D8405F0C5CB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6D2A95A-EDE0-4856-94B1-D8405F0C5CB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6D2A95A-EDE0-4856-94B1-D8405F0C5CB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

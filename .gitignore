@@ -9,6 +9,9 @@
 */Game/[Bb]uilds/
 */Game/[Ll]ogs/
 */Game/[Uu]ser[Ss]ettings/
+*/Game/Assets/Logic/
+*/ShaderCache
+*/StateCache
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
@@ -102,6 +105,13 @@ mono_crash.*
 */UnityIoc/[Oo]bj/
 */UnityIoc/[Ll]og/
 */UnityIoc/[Ll]ogs/
+*/**/obj
+
+**/*/bin/Debug
+**/*/obj/Debug
+
+**/*/bin/Release
+**/*/obj/Release
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
