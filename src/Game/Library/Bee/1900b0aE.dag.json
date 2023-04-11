@@ -131,7 +131,7 @@
       "DisplayName": "Writing NuGetForUnity.rsp",
       "ActionType": "WriteFile",
       "PayloadOffset": 224,
-      "PayloadLength": 30773,
+      "PayloadLength": 30706,
       "PayloadDebugContentSnippet": "-target:library\r\n-out:\"Library",
       "Inputs": [],
       "Outputs": [
@@ -146,9 +146,9 @@
       "Inputs": [
         "Assets/Logic/Autofac.dll",
         "Assets/Logic/System.Diagnostics.DiagnosticSource.dll",
+        "Assets/Logic/System.Runtime.CompilerServices.Unsafe.dll",
         "Assets/Logic/UnityIoC.Core.dll",
         "Assets/Logic/UnityIoC.dll",
-        "Assets/Packages/System.Runtime.CompilerServices.Unsafe.4.5.3/lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
         "D:/Appz/Unity/2022.2.1f1/Editor/Data/Managed/UnityEditor.Graphs.dll",
         "D:/Appz/Unity/2022.2.1f1/Editor/Data/Managed/UnityEngine/UnityEditor.CoreModule.dll",
         "D:/Appz/Unity/2022.2.1f1/Editor/Data/Managed/UnityEngine/UnityEditor.DeviceSimulatorModule.dll",
@@ -1921,7 +1921,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/1900b0aE.dag/NuGetForUnity.dll.mvfrm.rsp",
       "DisplayName": "Writing NuGetForUnity.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 31091,
+      "PayloadOffset": 31024,
       "PayloadLength": 7986,
       "PayloadDebugContentSnippet": "Library\\Bee\\artifacts\\mvdfrm\\U",
       "Inputs": [],
@@ -2167,15 +2167,15 @@
     {
       "Annotation": "BuildPlayerDataGenerator Library/BuildPlayerData/Editor/TypeDb-All.json",
       "DisplayName": "BuildPlayerDataGenerator TypeDb-All",
-      "Action": "\"D:/Appz/Unity/2022.2.1f1/Editor/Data\\Tools\\netcorerun\\netcorerun.exe\" \"D:/Appz/Unity/2022.2.1f1/Editor/Data/Tools/BuildPlayerDataGenerator/BuildPlayerDataGenerator.exe\" -a=\"D:/Git/Unity/unity-autofac-integration/src/Game/Assets/Logic/Autofac.dll\" -a=\"D:/Git/Unity/unity-autofac-integration/src/Game/Assets/Logic/System.Diagnostics.DiagnosticSource.dll\" -a=\"D:/Git/Unity/unity-autofac-integration/src/Game/Assets/Logic/UnityIoC.Core.dll\" -a=\"D:/Git/Unity/unity-autofac-integration/src/Game/Assets/Logic/UnityIoC.dll\" -a=\"D:/Git/Unity/unity-autofac-integration/src/Game/Assets/Packages/System.Runtime.CompilerServices.Unsafe.4.5.3/lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll\" -s=\"D:/Git/Unity/unity-autofac-integration/src/Game/Assets/Logic\" -s=\"D:/Git/Unity/unity-autofac-integration/src/Game/Assets/Packages/System.Runtime.CompilerServices.Unsafe.4.5.3/lib/netstandard2.0\" -s=\"D:/Appz/Unity/2022.2.1f1/Editor/Data/Managed/UnityEngine\" -s=\"D:/Appz/Unity/2022.2.1f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx\" -s=\"D:/Appz/Unity/2022.2.1f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard\" -s=\"D:/Appz/Unity/2022.2.1f1/Editor/Data/NetStandard/Extensions/2.0.0\" -s=\"D:/Appz/Unity/2022.2.1f1/Editor/Data/NetStandard/ref/2.1.0\" -o=\"Library/BuildPlayerData/Editor\" -rn=\"\" -tn=\"TypeDb-All.json\"",
+      "Action": "\"D:/Appz/Unity/2022.2.1f1/Editor/Data\\Tools\\netcorerun\\netcorerun.exe\" \"D:/Appz/Unity/2022.2.1f1/Editor/Data/Tools/BuildPlayerDataGenerator/BuildPlayerDataGenerator.exe\" -a=\"D:/Git/Unity/unity-autofac-integration/src/Game/Assets/Logic/Autofac.dll\" -a=\"D:/Git/Unity/unity-autofac-integration/src/Game/Assets/Logic/System.Diagnostics.DiagnosticSource.dll\" -a=\"D:/Git/Unity/unity-autofac-integration/src/Game/Assets/Logic/System.Runtime.CompilerServices.Unsafe.dll\" -a=\"D:/Git/Unity/unity-autofac-integration/src/Game/Assets/Logic/UnityIoC.Core.dll\" -a=\"D:/Git/Unity/unity-autofac-integration/src/Game/Assets/Logic/UnityIoC.dll\" -s=\"D:/Git/Unity/unity-autofac-integration/src/Game/Assets/Logic\" -s=\"D:/Appz/Unity/2022.2.1f1/Editor/Data/Managed/UnityEngine\" -s=\"D:/Appz/Unity/2022.2.1f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx\" -s=\"D:/Appz/Unity/2022.2.1f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard\" -s=\"D:/Appz/Unity/2022.2.1f1/Editor/Data/NetStandard/Extensions/2.0.0\" -s=\"D:/Appz/Unity/2022.2.1f1/Editor/Data/NetStandard/ref/2.1.0\" -o=\"Library/BuildPlayerData/Editor\" -rn=\"\" -tn=\"TypeDb-All.json\"",
       "Inputs": [
         "D:/Appz/Unity/2022.2.1f1/Editor/Data/Tools/netcorerun/netcorerun.exe",
         "D:/Appz/Unity/2022.2.1f1/Editor/Data/Tools/BuildPlayerDataGenerator/BuildPlayerDataGenerator.exe",
         "Assets/Logic/Autofac.dll",
         "Assets/Logic/System.Diagnostics.DiagnosticSource.dll",
+        "Assets/Logic/System.Runtime.CompilerServices.Unsafe.dll",
         "Assets/Logic/UnityIoC.Core.dll",
-        "Assets/Logic/UnityIoC.dll",
-        "Assets/Packages/System.Runtime.CompilerServices.Unsafe.4.5.3/lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll"
+        "Assets/Logic/UnityIoC.dll"
       ],
       "Outputs": [
         "Library/BuildPlayerData/Editor/TypeDb-All.json"
@@ -2318,6 +2318,9 @@
       "File": "Assets/Logic/System.Diagnostics.DiagnosticSource.dll"
     },
     {
+      "File": "Assets/Logic/System.Runtime.CompilerServices.Unsafe.dll"
+    },
+    {
       "File": "Assets/Logic/UnityIoC.Core.dll"
     },
     {
@@ -2325,9 +2328,6 @@
     },
     {
       "File": "Assets/mcs.rsp"
-    },
-    {
-      "File": "Assets/Packages/System.Runtime.CompilerServices.Unsafe.4.5.3/lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll"
     },
     {
       "File": "D:/Appz/Unity/2022.2.1f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.IO.Compression.dll"

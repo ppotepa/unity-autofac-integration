@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netframework472</TargetFramework>
+    <BaseOutputPath>..\Game\Assets\Logic</BaseOutputPath>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+    <StartupOBject>UnityIoC.IO.WSConsole.Program</StartupOBject>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <CopyRefAssembliesToPublishDirectory>true</CopyRefAssembliesToPublishDirectory>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="bin\**" />
+    <EmbeddedResource Remove="bin\**" />
+    <None Remove="bin\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="post-build.bat" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="post-build.bat">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="WebsocketSharp.Standard2" Version="2022.4.16.1520" />
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\Game\Assets\Logic</OutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <Optimize>False</Optimize>
+  </PropertyGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="call post-build.bat" />
+  </Target>
+
+</Project>

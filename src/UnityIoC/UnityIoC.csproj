@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard21</TargetFramework>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-    <CopyRefAssembliesToPublishDirectory>true</CopyRefAssembliesToPublishDirectory>
+    <OutputType>Library</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\UnityIoC.Core\UnityIoC.Core\UnityIoC.Core.csproj" />    
+    <ProjectReference Include="..\UnityIoC.Core\UnityIoC.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

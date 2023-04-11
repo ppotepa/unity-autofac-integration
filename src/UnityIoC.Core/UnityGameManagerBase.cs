@@ -1,75 +1,102 @@
 ﻿using Autofac;
 using System;
 using System.Collections;
+using System.Diagnostics;
+using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityIoC.Core.Abstractions.Game;
 using UnityIoC.Core.Abstractions.Game.Modules;
+using UnityIoC.Core.IO.Network.WebSocket;
 
 namespace UnityIoC.Core
 {
     public class UnityGameManagerBase : MonoBehaviour
     {
         protected const string Manager = "Manager";
-        protected IContainer _container = default;
-        protected IGame _game = default;
-        
-        private GameObject _gameManagerObject = default;
-        private ContainerBuilder _builder = default;
+        protected Process ConsoleProcessHandle = default;
+        protected GameObject ManagerObject = default;
+        protected UnityWebSocketServer WebSocketServer = default;
 
+        // ReSharper disable once InconsistentNaming
+        private static readonly string WS_CONSOLE_EXECUTABLE_PATH
+            = Path.Combine(new[] { Directory.GetCurrentDirectory(), "Assets", "Logic", "wsconsole.exe" });
+
+        private readonly Process _cmdProcess = default;
+        private ContainerBuilder _builder = default;
+        private IContainer _container = default;
+        private IServer _server = default;
+
+        public UnityGameManagerBase()
+        {
+            WebSocketServer = new UnityWebSocketServer(this);
+            ManagerObject ??= GameObject.Find(nameof(Manager));
+        }
+
+        ~UnityGameManagerBase()
+        {
+
+        }
+
+        public bool IsRunning => ManagerObject != default;
         protected IContainer Container
         {
-            get
-            {
-                if (_container is null)
-                {
-                    _container = Builder.Build();
-                }
-                return _container;
-            }
+            get => _container = _container ?? Builder.Build();
             set => _container = value;
         }
-
-        protected IGame Game
-        {
-            get
-            {
-                if (_game is null)
-                {
-                    _game = Container.Resolve<IGame>();
-                }
-                return _game;
-            }
-        }
-
-        protected GameObject ManagerObject
-        {
-            get
-            {
-                _gameManagerObject ??= GameObject.Find(nameof(Manager));
-                return _gameManagerObject;
-            }
-        }
-
+        protected IServer Server => _server ??= Container.Resolve<IServer>();
         private ContainerBuilder Builder
         {
             get
             {
-                if (_builder is null)
+                if (_builder != null) return _builder;
+
+                _builder = new ContainerBuilder();
+
+                _builder.RegisterAssemblyTypes(AppDomain.CurrentDomain.GetAssemblies())
+                    .Where(type => type.IsSubclassOf(typeof(GameModule)))
+                    .As<GameModule>()
+                    .SingleInstance();
+
+                _builder.RegisterType<Server>().As<IServer>().SingleInstance()
+                    .OnActivated(args => args.Instance.SetInstance(args.Instance));
+
+                ThreadPool.QueueUserWorkItem((_) => WebSocketServer.Initialize());
+
+                ThreadPool.QueueUserWorkItem((@object) =>
                 {
-                    _builder = new ContainerBuilder();
-                    //_builder.RegisterInstance(GameConfiguration).AsImplementedInterfaces().SingleInstance();
 
-                    _builder.RegisterAssemblyTypes(AppDomain.CurrentDomain.GetAssemblies())
-                         .Where(type => type.IsSubclassOf(typeof(GameModule)))
-                         .As<GameModule>()
-                         .SingleInstance();
+                    try
+                    {
+                        TaskCompletionSource<int> source = new();
 
-                    _builder.RegisterType<Game>().As<IGame>().SingleInstance().OnActivated(args => args.Instance.SetInstance(args.Instance));
-                }
+                        ConsoleProcessHandle = new Process()
+                        {
+                            StartInfo =
+                            {
+                                FileName = WS_CONSOLE_EXECUTABLE_PATH,
+                            },
+                            EnableRaisingEvents = true,
+                        };
+
+                        ConsoleProcessHandle.Exited += (sender, args) =>
+                        {
+                            source.SetResult(ConsoleProcessHandle.ExitCode);
+                            ConsoleProcessHandle.Dispose();
+                        };
+
+
+                        ConsoleProcessHandle.Start();
+                    }
+                    catch (Exception exception)
+                    {
+                        File.AppendAllText("ws_console.log", $"[{DateTime.Now}] \t {exception.Message}");
+                    }
+                });
 
                 return _builder;
             }
-            set => _builder = value;
         }
 
         protected IEnumerator Start()
@@ -79,7 +106,7 @@ namespace UnityIoC.Core
 
         protected virtual void Update()
         {
-            ManagerObject.gameObject.transform.Rotate(0.1f, 0.1f, 0.1f);
+            Server.Tick();
         }
     }
 }
